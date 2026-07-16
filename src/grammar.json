@@ -431,6 +431,22 @@
           "name": "commit"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "commit"
+              }
+            ]
+          }
+        },
+        {
           "type": "STRING",
           "value": ".."
         },
@@ -514,36 +530,76 @@
       ]
     },
     "location": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "@@"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "linerange"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "linerange"
-        },
-        {
-          "type": "STRING",
-          "value": "@@"
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "[^\\r\\n]+"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "@@"
+              }
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "linerange"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "linerange"
+            },
+            {
+              "type": "STRING",
+              "value": "@@"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\r\\n]+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "@@@"
+              }
+            },
+            {
+              "type": "REPEAT1",
+              "content": {
+                "type": "SYMBOL",
+                "name": "linerange"
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "@@@"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\r\\n]+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         }
@@ -620,6 +676,54 @@
               "content": {
                 "type": "STRING",
                 "value": "++++"
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\r\\n]+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": ">"
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\r\\n]+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": ">>"
               }
             },
             {
@@ -724,6 +828,54 @@
               ]
             }
           ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "<"
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\r\\n]+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "<<"
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\r\\n]+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -769,9 +921,22 @@
     "filename": {
       "type": "REPEAT1",
       "content": {
-        "type": "PATTERN",
-        "value": "\\S+"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_quoted_filename"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\S+"
+          }
+        ]
       }
+    },
+    "_quoted_filename": {
+      "type": "PATTERN",
+      "value": "\"([^\"\\\\]|\\\\.)*\""
     },
     "commit": {
       "type": "PATTERN",

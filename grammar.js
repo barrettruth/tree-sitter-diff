@@ -77,7 +77,8 @@ export default grammar({
     binary_change: ($) =>
       iseq("Binary", "files", $.filename, "and", $.filename, "differ"),
 
-    index: ($) => iseq("index", $.commit, "..", $.commit, optional($.mode)),
+    index: ($) =>
+      iseq("index", $.commit, repeat(seq(",", $.commit)), "..", $.commit, optional($.mode)),
 
     similarity: ($) => iseq("similarity", "index", alias(/\d+/, $.score), "%"),
 
@@ -85,28 +86,36 @@ export default grammar({
     new_file: ($) => iseq("+++", $.filename),
 
     location: ($) =>
-      iseq("@@", $.linerange, $.linerange, "@@", optional(ANYTHING)),
+      choice(
+        iseq("@@", $.linerange, $.linerange, "@@", optional(ANYTHING)),
+        iseq("@@@", repeat1($.linerange), "@@@", optional(ANYTHING))
+      ),
 
     addition: ($) =>
       choice(
         iseq("+", optional(ANYTHING)),
         iseq("++", optional(ANYTHING)),
         iseq("+++"),
-        iseq("++++", optional(ANYTHING))
+        iseq("++++", optional(ANYTHING)),
+        iseq(">", optional(ANYTHING)),
+        iseq(">>", optional(ANYTHING))
       ),
     deletion: ($) =>
       choice(
         iseq("-", optional(ANYTHING)),
         iseq("--", optional(ANYTHING)),
         iseq("---"),
-        iseq("----", optional(ANYTHING))
+        iseq("----", optional(ANYTHING)),
+        iseq("<", optional(ANYTHING)),
+        iseq("<<", optional(ANYTHING))
       ),
 
     context: ($) => token(prec(-1, ANYTHING)),
     comment: ($) => iseq("#", optional(ANYTHING)),
 
     linerange: ($) => /[-\+]\d+(,\d+)?/,
-    filename: ($) => repeat1(/\S+/),
+    filename: ($) => repeat1(choice($._quoted_filename, /\S+/)),
+    _quoted_filename: ($) => /"([^"\\]|\\.)*"/,
     commit: ($) => /[a-f0-9]{7,40}/,
     mode: ($) => /\d+/,
   },
