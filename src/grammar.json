@@ -248,6 +248,24 @@
               "type": "CHOICE",
               "members": [
                 {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_hunk_addition"
+                  },
+                  "named": true,
+                  "value": "addition"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_hunk_deletion"
+                  },
+                  "named": true,
+                  "value": "deletion"
+                },
+                {
                   "type": "SYMBOL",
                   "name": "addition"
                 },
@@ -554,6 +572,38 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "_hunk_addition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "+++"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^\\r\\n]+"
+        }
+      ]
+    },
+    "_hunk_deletion": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "---"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^\\r\\n]+"
         }
       ]
     },
