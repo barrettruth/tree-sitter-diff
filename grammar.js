@@ -25,6 +25,7 @@ export default grammar({
         $.location,
         $.addition,
         $.deletion,
+        $.change,
         $.context,
         $.comment,
         $.special,
@@ -60,7 +61,7 @@ export default grammar({
       prec.right(
         repeat1(
           seq(
-            choice($.addition, $.deletion, $.context, $.special),
+            choice($.addition, $.deletion, $.change, $.context, $.special),
             prec.right(repeat1(NEWLINE))
           )
         )
@@ -93,15 +94,18 @@ export default grammar({
         iseq("+", optional(ANYTHING)),
         iseq("++", optional(ANYTHING)),
         iseq("+++"),
-        iseq("++++", optional(ANYTHING))
+        iseq("++++", optional(ANYTHING)),
+        iseq(">", optional(ANYTHING))
       ),
     deletion: ($) =>
       choice(
         iseq("-", optional(ANYTHING)),
         iseq("--", optional(ANYTHING)),
         iseq("---"),
-        iseq("----", optional(ANYTHING))
+        iseq("----", optional(ANYTHING)),
+        iseq("<", optional(ANYTHING))
       ),
+    change: ($) => iseq("!", optional(ANYTHING)),
 
     context: ($) => iseq(" ", optional(ANYTHING)),
     comment: ($) => iseq("#", optional(ANYTHING)),
