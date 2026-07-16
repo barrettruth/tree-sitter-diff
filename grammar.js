@@ -25,6 +25,7 @@ export default grammar({
         $.location,
         $.addition,
         $.deletion,
+        $.change,
         $.context,
         $.comment,
         $.special,
@@ -65,6 +66,7 @@ export default grammar({
               alias($._hunk_deletion, $.deletion),
               $.addition,
               $.deletion,
+              $.change,
               $.context,
               $.special
             ),
@@ -103,15 +105,18 @@ export default grammar({
         iseq("+", optional(ANYTHING)),
         iseq("++", optional(ANYTHING)),
         iseq("+++"),
-        iseq("++++", optional(ANYTHING))
+        iseq("++++", optional(ANYTHING)),
+        iseq(">", optional(ANYTHING))
       ),
     deletion: ($) =>
       choice(
         iseq("-", optional(ANYTHING)),
         iseq("--", optional(ANYTHING)),
         iseq("---"),
-        iseq("----", optional(ANYTHING))
+        iseq("----", optional(ANYTHING)),
+        iseq("<", optional(ANYTHING))
       ),
+    change: ($) => iseq("!", optional(ANYTHING)),
 
     context: ($) => iseq(" ", optional(ANYTHING)),
     comment: ($) => iseq("#", optional(ANYTHING)),
