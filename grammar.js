@@ -60,7 +60,14 @@ export default grammar({
       prec.right(
         repeat1(
           seq(
-            choice($.addition, $.deletion, $.context, $.special),
+            choice(
+              alias($._hunk_addition, $.addition),
+              alias($._hunk_deletion, $.deletion),
+              $.addition,
+              $.deletion,
+              $.context,
+              $.special
+            ),
             prec.right(repeat1(NEWLINE))
           )
         )
@@ -87,6 +94,9 @@ export default grammar({
 
     location: ($) =>
       iseq("@@", $.linerange, $.linerange, "@@", optional(ANYTHING)),
+
+    _hunk_addition: ($) => iseq("+++", ANYTHING),
+    _hunk_deletion: ($) => iseq("---", ANYTHING),
 
     addition: ($) =>
       choice(

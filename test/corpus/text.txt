@@ -340,6 +340,43 @@ Leading plus additions
   (addition))
 
 ================================================================================
+Leading triple markers in hunk changes
+================================================================================
+diff --git a/a.txt b/a.txt
+index 1234567..89abcde 100644
+--- a/a.txt
++++ b/a.txt
+@@ -1,3 +1,3 @@
+--- C, C++
++++ C, C--
+ context
+
+--------------------------------------------------------------------------------
+
+(source
+  (block
+    (command
+      (argument)
+      (filename))
+    (index
+      (commit)
+      (commit)
+      (mode))
+    (old_file
+      (filename))
+    (new_file
+      (filename))
+    (hunks
+      (hunk
+        (location
+          (linerange)
+          (linerange))
+        (changes
+          (deletion)
+          (addition)
+          (context))))))
+
+================================================================================
 File mode changes
 ================================================================================
 diff --git a/LICENSE b/LICENSE
