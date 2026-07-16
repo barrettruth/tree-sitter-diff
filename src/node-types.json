@@ -63,6 +63,11 @@
     }
   },
   {
+    "type": "change",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "changes",
     "named": true,
     "fields": {},
@@ -72,6 +77,10 @@
       "types": [
         {
           "type": "addition",
+          "named": true
+        },
+        {
+          "type": "change",
           "named": true
         },
         {
@@ -294,6 +303,10 @@
           "named": true
         },
         {
+          "type": "change",
+          "named": true
+        },
+        {
           "type": "comment",
           "named": true
         },
@@ -346,6 +359,10 @@
     "named": false
   },
   {
+    "type": "!",
+    "named": false
+  },
+  {
     "type": "#",
     "named": false
   },
@@ -387,6 +404,14 @@
   },
   {
     "type": "..",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": ">",
     "named": false
   },
   {
