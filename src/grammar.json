@@ -106,6 +106,10 @@
         {
           "type": "SYMBOL",
           "name": "special"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unrecognized"
         }
       ]
     },
@@ -288,6 +292,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "special"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "unrecognized"
                 }
               ]
             },
@@ -936,6 +944,17 @@
           ]
         }
       ]
+    },
+    "unrecognized": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": -1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[^\\r\\n]+"
+        }
+      }
     },
     "linerange": {
       "type": "PATTERN",
