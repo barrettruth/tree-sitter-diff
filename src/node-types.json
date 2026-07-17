@@ -94,6 +94,10 @@
         {
           "type": "special",
           "named": true
+        },
+        {
+          "type": "unrecognized",
+          "named": true
         }
       ]
     }
@@ -345,6 +349,10 @@
         {
           "type": "special",
           "named": true
+        },
+        {
+          "type": "unrecognized",
+          "named": true
         }
       ]
     }
@@ -497,5 +505,9 @@
   {
     "type": "to",
     "named": false
+  },
+  {
+    "type": "unrecognized",
+    "named": true
   }
 ]
