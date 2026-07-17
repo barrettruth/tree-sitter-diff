@@ -29,6 +29,7 @@ export default grammar({
         $.context,
         $.comment,
         $.special,
+        $.unrecognized,
       ),
 
     block: ($) =>
@@ -68,7 +69,8 @@ export default grammar({
               $.deletion,
               $.change,
               $.context,
-              $.special
+              $.special,
+              $.unrecognized
             ),
             prec.right(repeat1(NEWLINE))
           )
@@ -121,6 +123,7 @@ export default grammar({
     context: ($) => iseq(" ", optional(ANYTHING)),
     comment: ($) => iseq("#", optional(ANYTHING)),
     special: ($) => iseq("\\", optional(ANYTHING)),
+    unrecognized: ($) => token(prec(-1, ANYTHING)),
 
     linerange: ($) => /[-\+]\d+(,\d+)?/,
     filename: ($) => repeat1(/\S+/),
