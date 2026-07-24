@@ -10,7 +10,6 @@
           (context) @injection.content
           (addition) @injection.content
           (deletion)
-          (location)
         ]+)))
   (#offset! @injection.content 0 1 0 1))
 
@@ -25,6 +24,5 @@
           (context) @injection.content
           (addition)
           (deletion) @injection.content
-          (location)
         ]+)))
   (#offset! @injection.content 0 1 0 1))

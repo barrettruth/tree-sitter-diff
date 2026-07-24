@@ -48,6 +48,55 @@ index dc36969..f37fde0 100644
           (context))))))
 
 ================================================================================
+Multiple hunks
+================================================================================
+diff --git a/foo.lua b/foo.lua
+index 1234567..89abcde 100644
+--- a/foo.lua
++++ b/foo.lua
+@@ -1,2 +1,2 @@
+ local a = 1
+-local b = 2
++local b = 3
+@@ -10,2 +10,2 @@
+ local x = 1
+-local y = 2
++local y = 3
+
+--------------------------------------------------------------------------------
+
+(source
+  (block
+    (command
+      (argument)
+      (filename))
+    (index
+      (commit)
+      (commit)
+      (mode))
+    (old_file
+      (filename))
+    (new_file
+      (filename))
+    (hunks
+      (hunk
+        (location
+          (linerange)
+          (linerange))
+        (changes
+          (context)
+          (deletion)
+          (addition)))
+      (hunk
+        (location
+          (linerange)
+          (linerange))
+        (changes
+          (context)
+          (deletion)
+          (addition))))))
+
+================================================================================
 Single-file small change with preceding empty context
 ================================================================================
 diff --git a/grammar.js b/grammar.js
