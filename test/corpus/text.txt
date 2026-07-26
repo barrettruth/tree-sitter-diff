@@ -97,6 +97,80 @@ index 1234567..89abcde 100644
           (addition))))))
 
 ================================================================================
+Abbreviated object IDs
+================================================================================
+diff --git a/foo.lua b/foo.lua
+index 284f..8c13 100644
+--- a/foo.lua
++++ b/foo.lua
+@@ -1,2 +1,2 @@
+ local a = 1
+-local b = 2
++local b = 3
+
+--------------------------------------------------------------------------------
+
+(source
+  (block
+    (command
+      (argument)
+      (filename))
+    (index
+      (commit)
+      (commit)
+      (mode))
+    (old_file
+      (filename))
+    (new_file
+      (filename))
+    (hunks
+      (hunk
+        (location
+          (linerange)
+          (linerange))
+        (changes
+          (context)
+          (deletion)
+          (addition))))))
+
+================================================================================
+SHA-256 object IDs
+================================================================================
+diff --git a/foo.lua b/foo.lua
+index 0edfb5eb52bed270799aae16a21bc8adac2cb6815d3f3d7e7f6f313c0af97aff..4a91400df7071e5273d21b1c47dcad82c045f37ef7130a128b39334e5635ef87 100644
+--- a/foo.lua
++++ b/foo.lua
+@@ -1,2 +1,2 @@
+ local a = 1
+-local b = 2
++local b = 3
+
+--------------------------------------------------------------------------------
+
+(source
+  (block
+    (command
+      (argument)
+      (filename))
+    (index
+      (commit)
+      (commit)
+      (mode))
+    (old_file
+      (filename))
+    (new_file
+      (filename))
+    (hunks
+      (hunk
+        (location
+          (linerange)
+          (linerange))
+        (changes
+          (context)
+          (deletion)
+          (addition))))))
+
+================================================================================
 Single-file small change with preceding empty context
 ================================================================================
 diff --git a/grammar.js b/grammar.js
