@@ -36,6 +36,10 @@
           "named": true
         },
         {
+          "type": "dissimilarity",
+          "named": true
+        },
+        {
           "type": "file_change",
           "named": true
         },
@@ -135,6 +139,21 @@
     "type": "deletion",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "dissimilarity",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "score",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "file_change",
@@ -323,6 +342,10 @@
           "named": true
         },
         {
+          "type": "dissimilarity",
+          "named": true
+        },
+        {
           "type": "file_change",
           "named": true
         },
@@ -447,6 +470,10 @@
     "named": true
   },
   {
+    "type": "copy",
+    "named": false
+  },
+  {
     "type": "deleted",
     "named": false
   },
@@ -456,6 +483,10 @@
   },
   {
     "type": "differ",
+    "named": false
+  },
+  {
+    "type": "dissimilarity",
     "named": false
   },
   {

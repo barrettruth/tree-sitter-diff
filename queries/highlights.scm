@@ -47,6 +47,7 @@
 [
   (binary_change)
   (similarity)
+  (dissimilarity)
   (file_change)
 ] @label
 
@@ -54,5 +55,9 @@
   "index" @keyword)
 
 (similarity
+  (score) @number
+  "%" @number)
+
+(dissimilarity
   (score) @number
   "%" @number)

@@ -73,6 +73,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "dissimilarity"
+        },
+        {
+          "type": "SYMBOL",
           "name": "old_file"
         },
         {
@@ -150,6 +154,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "similarity"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "dissimilarity"
                     }
                   ]
                 },
@@ -402,8 +410,17 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "rename"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "rename"
+                },
+                {
+                  "type": "STRING",
+                  "value": "copy"
+                }
+              ]
             },
             {
               "type": "CHOICE",
@@ -502,6 +519,35 @@
           "content": {
             "type": "STRING",
             "value": "similarity"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "index"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "\\d+"
+          },
+          "named": true,
+          "value": "score"
+        },
+        {
+          "type": "STRING",
+          "value": "%"
+        }
+      ]
+    },
+    "dissimilarity": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "dissimilarity"
           }
         },
         {

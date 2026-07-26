@@ -20,6 +20,7 @@ export default grammar({
         $.binary_change,
         $.index,
         $.similarity,
+        $.dissimilarity,
         $.old_file,
         $.new_file,
         $.location,
@@ -39,7 +40,13 @@ export default grammar({
           NEWLINE,
           repeat(
             seq(
-              choice($.file_change, $.binary_change, $.index, $.similarity),
+              choice(
+                $.file_change,
+                $.binary_change,
+                $.index,
+                $.similarity,
+                $.dissimilarity
+              ),
               NEWLINE
             )
           ),
@@ -83,7 +90,7 @@ export default grammar({
       choice(
         seq(choice("new", "deleted"), "file", "mode", $.mode),
         seq(choice("new", "old"), "mode", $.mode),
-        seq("rename", choice("from", "to"), $.filename)
+        seq(choice("rename", "copy"), choice("from", "to"), $.filename)
       ),
 
     binary_change: ($) =>
@@ -92,6 +99,8 @@ export default grammar({
     index: ($) => iseq("index", $.commit, "..", $.commit, optional($.mode)),
 
     similarity: ($) => iseq("similarity", "index", alias(/\d+/, $.score), "%"),
+    dissimilarity: ($) =>
+      iseq("dissimilarity", "index", alias(/\d+/, $.score), "%"),
 
     old_file: ($) => iseq("---", $.filename),
     new_file: ($) => iseq("+++", $.filename),
