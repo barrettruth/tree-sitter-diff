@@ -136,7 +136,7 @@ export default grammar({
 
     linerange: ($) => /[-\+]\d+(,\d+)?/,
     filename: ($) => repeat1(/\S+/),
-    commit: ($) => /[a-f0-9]{7,40}/,
+    commit: ($) => /[a-f0-9]{4,64}/,
     mode: ($) => /\d+/,
   },
 });
