@@ -210,6 +210,98 @@ rename to tmp.md
       (filename))))
 
 ================================================================================
+Copy detection
+================================================================================
+diff --git a/src.txt b/dst.txt
+similarity index 79%
+copy from src.txt
+copy to dst.txt
+index 9db9bbf..867825f 100644
+--- a/src.txt
++++ b/dst.txt
+@@ -3,4 +3,4 @@ bravo
+ charlie
+ delta
+ echo
+-foxtrot
++golf
+
+--------------------------------------------------------------------------------
+
+(source
+  (block
+    (command
+      (argument)
+      (filename))
+    (similarity
+      (score))
+    (file_change
+      (filename))
+    (file_change
+      (filename))
+    (index
+      (commit)
+      (commit)
+      (mode))
+    (old_file
+      (filename))
+    (new_file
+      (filename))
+    (hunks
+      (hunk
+        (location
+          (linerange)
+          (linerange))
+        (changes
+          (context)
+          (context)
+          (context)
+          (deletion)
+          (addition))))))
+
+================================================================================
+Dissimilarity index
+================================================================================
+diff --git a/big.txt b/big.txt
+dissimilarity index 100%
+index 562673c..35ac9f0 100644
+--- a/big.txt
++++ b/big.txt
+@@ -1,2 +1,2 @@
+-old one
+-old two
++new one
++new two
+
+--------------------------------------------------------------------------------
+
+(source
+  (block
+    (command
+      (argument)
+      (filename))
+    (dissimilarity
+      (score))
+    (index
+      (commit)
+      (commit)
+      (mode))
+    (old_file
+      (filename))
+    (new_file
+      (filename))
+    (hunks
+      (hunk
+        (location
+          (linerange)
+          (linerange))
+        (changes
+          (deletion)
+          (deletion)
+          (addition)
+          (addition))))))
+
+================================================================================
 Location with no context
 ================================================================================
 @@ -0,0 +1 @@
