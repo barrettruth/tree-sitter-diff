@@ -1,6 +1,7 @@
 const NEWLINE = /\r?\n/;
 const WHITE_SPACE = /[\t\f\v ]+/;
 const ANYTHING = /[^\r\n]+/;
+const BASE85 = /[A-Za-z][0-9A-Za-z!#$%&()*+\-;<=>?@^_`{|}~]+/;
 
 export default grammar({
   name: "diff",
@@ -50,9 +51,32 @@ export default grammar({
               NEWLINE
             )
           ),
-          optional(seq($.old_file, NEWLINE, $.new_file, NEWLINE, $.hunks))
+          optional(
+            choice(
+              seq($.old_file, NEWLINE, $.new_file, NEWLINE, $.hunks),
+              $.binary_patch
+            )
+          )
         )
       ),
+
+    binary_patch: ($) =>
+      prec.right(
+        seq(iseq("GIT", "binary", "patch"), NEWLINE, repeat1($.binary_hunk))
+      ),
+
+    binary_hunk: ($) =>
+      prec.right(
+        seq(
+          choice(iseq("literal"), iseq("delta")),
+          alias(/\d+/, $.size),
+          NEWLINE,
+          $.data,
+          prec.right(repeat(NEWLINE))
+        )
+      ),
+
+    data: ($) => prec.right(repeat1(seq(BASE85, NEWLINE))),
 
     hunks: ($) => prec.right(repeat1($.hunk)),
 
