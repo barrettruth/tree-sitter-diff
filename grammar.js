@@ -62,7 +62,12 @@ export default grammar({
 
     binary_patch: ($) =>
       prec.right(
-        seq(iseq("GIT", "binary", "patch"), NEWLINE, repeat1($.binary_hunk))
+        seq(
+          iseq("GIT", "binary", "patch"),
+          NEWLINE,
+          field("forward", $.binary_hunk),
+          optional(field("reverse", $.binary_hunk))
+        )
       ),
 
     binary_hunk: ($) =>

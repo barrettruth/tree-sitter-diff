@@ -244,11 +244,28 @@
             "value": "\\r?\\n"
           },
           {
-            "type": "REPEAT1",
+            "type": "FIELD",
+            "name": "forward",
             "content": {
               "type": "SYMBOL",
               "name": "binary_hunk"
             }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "reverse",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "binary_hunk"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }

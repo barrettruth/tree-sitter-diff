@@ -41,16 +41,27 @@
   {
     "type": "binary_patch",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "binary_hunk",
-          "named": true
-        }
-      ]
+    "fields": {
+      "forward": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_hunk",
+            "named": true
+          }
+        ]
+      },
+      "reverse": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "binary_hunk",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

@@ -61,3 +61,25 @@
 (dissimilarity
   (score) @number
   "%" @number)
+
+(binary_patch
+  [
+    "GIT"
+    "binary"
+    "patch"
+  ] @label)
+
+(binary_hunk
+  [
+    "literal"
+    "delta"
+  ] @keyword
+  (size) @number)
+
+(binary_patch
+  forward: (binary_hunk
+    (data) @diff.plus))
+
+(binary_patch
+  reverse: (binary_hunk
+    (data) @diff.minus))
